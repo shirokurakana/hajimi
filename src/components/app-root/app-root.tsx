@@ -173,11 +173,19 @@ export class AppRoot {
 				<div part="controls-container" class="app__controls-container">
 					<sl-button-group part="controls" class="app__controls">
 						<sl-button class="app__button-index" href="./" variant="neutral">
-							<sl-icon slot="prefix" class="app__logo"></sl-icon>AI接头工具
+							<sl-icon slot="prefix" class="app__logo"></sl-icon>接头工具
 						</sl-button>
 						<sl-button class="app__button-browse" onClick={this.handleBrowseButtonClick} disabled={this.disableFirstAction}>
-							<sl-icon slot="prefix" name="folder2-open"></sl-icon>选取图片
+							<sl-icon slot="prefix" name="folder2-open"></sl-icon>选择
 						</sl-button>
+						<sl-button class="app__button-save" onClick={this.handleSaveButtonClick} disabled={this.disableSecondAction}>
+							<sl-icon slot="prefix" name="download"></sl-icon>保存
+						</sl-button>
+						<sl-button class="app__button-about" variant="neutral" onClick={this.handleAboutButtonClick}>
+							<sl-icon slot="prefix" name="info-circle"></sl-icon>关于
+						</sl-button>
+					</sl-button-group>
+					<sl-button-group part="controls" class="app__controls">
 						<sl-button class="app__button-add" onClick={this.handleAddButtonClick} disabled={this.disableSecondAction}>
 							<sl-icon slot="prefix" name="plus-circle"></sl-icon>添加<sl-icon slot="suffix" class="app__logo"></sl-icon>
 						</sl-button>
@@ -187,12 +195,6 @@ export class AppRoot {
 						<sl-button class="app__button-frame" onClick={this.handleFrameButtonClick} disabled={this.disableSecondAction}>
 							<sl-icon slot="prefix" name={this.showFrame ? 'x-square' : 'square'}></sl-icon>
 							{this.showFrame ? '隐藏' : '显示'}特征
-						</sl-button>
-						<sl-button class="app__button-save" onClick={this.handleSaveButtonClick} disabled={this.disableSecondAction}>
-							<sl-icon slot="prefix" name="download"></sl-icon>保存图片
-						</sl-button>
-						<sl-button class="app__button-about" variant="neutral" onClick={this.handleAboutButtonClick}>
-							<sl-icon slot="prefix" name="info-circle"></sl-icon>关于
 						</sl-button>
 					</sl-button-group>
 				</div>

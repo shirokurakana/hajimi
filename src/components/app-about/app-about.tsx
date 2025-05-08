@@ -12,8 +12,16 @@ export class AppAbout {
 				<div class="about__title">工具作者</div>
 				<div class="about__text">
 					<sl-button variant="text" href="https://thwiki.cc/%E7%94%A8%E6%88%B7:Arumi" target="blank">
-						<sl-avatar slot="prefix" image="https://upload.thwiki.cc/avatars/thwikicc_wiki_234_l.jpg"></sl-avatar>
+						<sl-avatar slot="prefix" image="https://upload.thbwiki.cc/avatars/thwikicc_wiki_234_l.jpg"></sl-avatar>
 						桜有海@THBWiki
+					</sl-button>
+				</div>
+
+				<div class="about__title">二改作者</div>
+				<div class="about__text">
+					<sl-button variant="text" href="https://thwiki.cc/%E7%94%A8%E6%88%B7:%E7%8E%B2%E5%AD%90" target="blank">
+						<sl-avatar slot="prefix" image="https://upload.thbwiki.cc/avatars/thwikicc_wiki_36153_l.jpg"></sl-avatar>
+						玲子@THBWiki
 					</sl-button>
 				</div>
 
