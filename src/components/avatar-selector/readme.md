@@ -5,11 +5,11 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
+## Events
 
-| Property   | Attribute | Description | Type                          | Default     |
-| ---------- | --------- | ----------- | ----------------------------- | ----------- |
-| `onSelect` | --        |             | `(avatarUrl: string) => void` | `undefined` |
+| Event          | Description | Type                  |
+| -------------- | ----------- | --------------------- |
+| `selectAvatar` |             | `CustomEvent<string>` |
 
 
 ## Dependencies

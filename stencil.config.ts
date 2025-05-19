@@ -33,6 +33,7 @@ export const config: Config = {
 				{ src: 'favicon.ico' },
 				{ src: 'opencv' },
 				{ src: '../node_modules/@shoelace-style/shoelace/dist/assets', dest: 'assets' },
+				{ src: 'components/editor/assets/heads', dest: 'assets/heads' },
 			],
 		},
 	],

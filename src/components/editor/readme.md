@@ -34,6 +34,16 @@ Type: `Promise<void>`
 
 
 
+### `setAvatar(avatarUrl: string) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `setData(data: any) => Promise<void>`
 
 

@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { Component, h, State, Event, EventEmitter } from '@stencil/core';
 
 @Component({
     tag: 'avatar-selector',
