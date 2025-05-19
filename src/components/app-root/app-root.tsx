@@ -21,6 +21,7 @@ export class AppRoot {
 	private browseElement: HTMLInputElement;
 	private aboutElement: SlDialog;
 	private errorElement: SlDialog;
+	private avatarSelectorElement: SlDialog;
 
 	private filename: string;
 	private downloadUrl: string = null;
@@ -45,6 +46,9 @@ export class AppRoot {
 	@State()
 	detectorError = '';
 
+	@State()
+	selectedAvatarUrl: string = '';
+
 	connectedCallback() {
 		this.handleDetectorChange = this.handleDetectorChange.bind(this);
 		this.handleDetectorError = this.handleDetectorError.bind(this);
@@ -55,6 +59,8 @@ export class AppRoot {
 		this.handleFrameButtonClick = this.handleFrameButtonClick.bind(this);
 		this.handleSaveButtonClick = this.handleSaveButtonClick.bind(this);
 		this.handleAboutButtonClick = this.handleAboutButtonClick.bind(this);
+		this.handleAvatarButtonClick = this.handleAvatarButtonClick.bind(this);
+		this.handleAvatarSelect = this.handleAvatarSelect.bind(this);
 
 		this.handleFiledrop = this.handleFiledrop.bind(this);
 		this.handleFileSelect = this.handleFileSelect.bind(this);
@@ -117,6 +123,16 @@ export class AppRoot {
 		this.aboutElement?.show();
 	}
 
+	handleAvatarButtonClick() {
+		this.avatarSelectorElement?.show();
+	}
+
+	handleAvatarSelect(avatarUrl: string) {
+		console.log('Handling avatar select:', avatarUrl);
+		this.selectedAvatarUrl = avatarUrl;
+		this.detectorElement.setAvatar(this.selectedAvatarUrl);
+	}
+
 	handleFiledrop(e: FileDropEvent) {
 		if (this.disableFirstAction) return;
 		const { files } = e;
@@ -173,7 +189,7 @@ export class AppRoot {
 				<div part="controls-container" class="app__controls-container">
 					<sl-button-group part="controls" class="app__controls">
 						<sl-button class="app__button-index" href="./" variant="neutral">
-							<sl-icon slot="prefix" class="app__logo"></sl-icon>接头工具
+							<sl-icon slot="prefix" class="app__logo"></sl-icon>
 						</sl-button>
 						<sl-button class="app__button-browse" onClick={this.handleBrowseButtonClick} disabled={this.disableFirstAction}>
 							<sl-icon slot="prefix" name="folder2-open"></sl-icon>选择
@@ -181,8 +197,11 @@ export class AppRoot {
 						<sl-button class="app__button-save" onClick={this.handleSaveButtonClick} disabled={this.disableSecondAction}>
 							<sl-icon slot="prefix" name="download"></sl-icon>保存
 						</sl-button>
+						<sl-button class="app__button-avatar" onClick={this.handleAvatarButtonClick} disabled={this.disableSecondAction}>
+							<sl-icon slot="prefix" name="person"></sl-icon>头像
+						</sl-button>
 						<sl-button class="app__button-about" variant="neutral" onClick={this.handleAboutButtonClick}>
-							<sl-icon slot="prefix" name="info-circle"></sl-icon>关于
+							<sl-icon slot="prefix" name="info-circle"></sl-icon>
 						</sl-button>
 					</sl-button-group>
 					<sl-button-group part="controls" class="app__controls">
@@ -238,6 +257,12 @@ export class AppRoot {
 						<sl-icon slot="prefix" name="exclamation-triangle"></sl-icon> 错误
 					</div>
 					{this.detectorError?.toString()}
+				</sl-dialog>
+				<sl-dialog ref={(el: SlDialog) => (this.avatarSelectorElement = el)} class="app__avatar-selector">
+					<div slot="label" class="app__avatar-selector-label">
+						<sl-icon slot="prefix" name="person"></sl-icon> 选择头像
+					</div>
+					<avatar-selector onSelectAvatar={(e) => this.handleAvatarSelect(e.detail)}></avatar-selector>
 				</sl-dialog>
 			</Host>
 		);

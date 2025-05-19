@@ -258,6 +258,14 @@ export class DoremiEditor {
 		this.data = data;
 	}
 
+	@Method()
+	async setAvatar(avatarUrl: string) {
+		const style = document.createElement('style');
+		style.textContent = `.doremi-face { background-image: url("${avatarUrl}") !important; }`;
+		this.host.shadowRoot.appendChild(style);
+		this.trigger++;
+	}
+
 	render() {
 		return (
 			<Host

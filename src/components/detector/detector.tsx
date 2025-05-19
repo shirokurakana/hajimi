@@ -239,6 +239,27 @@ export class DoremiDetector {
 		this.trigger++;
 	}
 
+	@Method()
+	async setAvatar(avatarUrl: string) {
+		console.log('Setting avatar:', avatarUrl);
+		try {
+			const response = await fetch(avatarUrl);
+			const blob = await response.blob();
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				const base64 = reader.result as string;
+				document.documentElement.style.setProperty('--face', `url("${base64}")`);
+				if (this.editorElement) {
+					this.editorElement.setAvatar(base64);
+				}
+				this.update();
+			};
+			reader.readAsDataURL(blob);
+		} catch (error) {
+			console.error('Error loading avatar:', error);
+		}
+	}
+
 	render() {
 		return (
 			<Host onDragStart={this.preventDefault}>

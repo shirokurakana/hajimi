@@ -54,6 +54,16 @@ Type: `Promise<Blob>`
 
 
 
+### `setAvatar(avatarUrl: string) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `update() => Promise<void>`
 
 

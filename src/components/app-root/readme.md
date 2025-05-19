@@ -32,12 +32,14 @@ Type: `Promise<void>`
 
 - [doremi-detector](../detector)
 - [app-about](../app-about)
+- [avatar-selector](../avatar-selector)
 
 ### Graph
 ```mermaid
 graph TD;
   app-root --> doremi-detector
   app-root --> app-about
+  app-root --> avatar-selector
   doremi-detector --> doremi-editor
   style app-root fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -11,11 +11,14 @@ export namespace Components {
     interface AppRoot {
         "update": () => Promise<void>;
     }
+    interface AvatarSelector {
+    }
     interface DoremiDetector {
         "addCover": () => Promise<void>;
         "deleteCover": () => Promise<void>;
         "exportImage": () => Promise<Blob>;
         "loading": boolean;
+        "setAvatar": (avatarUrl: string) => Promise<void>;
         "showFrame": boolean;
         "src": string;
         "update": () => Promise<void>;
@@ -25,10 +28,15 @@ export namespace Components {
         "deleteCover": () => Promise<void>;
         "height": number;
         "pid": number;
+        "setAvatar": (avatarUrl: string) => Promise<void>;
         "setData": (data: any) => Promise<void>;
         "update": () => Promise<void>;
         "width": number;
     }
+}
+export interface AvatarSelectorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAvatarSelectorElement;
 }
 export interface DoremiDetectorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -47,6 +55,12 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLAvatarSelectorElement extends Components.AvatarSelector, HTMLStencilElement {
+    }
+    var HTMLAvatarSelectorElement: {
+        prototype: HTMLAvatarSelectorElement;
+        new (): HTMLAvatarSelectorElement;
+    };
     interface HTMLDoremiDetectorElement extends Components.DoremiDetector, HTMLStencilElement {
     }
     var HTMLDoremiDetectorElement: {
@@ -62,6 +76,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "app-about": HTMLAppAboutElement;
         "app-root": HTMLAppRootElement;
+        "avatar-selector": HTMLAvatarSelectorElement;
         "doremi-detector": HTMLDoremiDetectorElement;
         "doremi-editor": HTMLDoremiEditorElement;
     }
@@ -70,6 +85,9 @@ declare namespace LocalJSX {
     interface AppAbout {
     }
     interface AppRoot {
+    }
+    interface AvatarSelector {
+        "onSelectAvatar"?: (event: AvatarSelectorCustomEvent<string>) => void;
     }
     interface DoremiDetector {
         "loading"?: boolean;
@@ -100,6 +118,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "app-about": AppAbout;
         "app-root": AppRoot;
+        "avatar-selector": AvatarSelector;
         "doremi-detector": DoremiDetector;
         "doremi-editor": DoremiEditor;
     }
@@ -110,6 +129,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "app-about": LocalJSX.AppAbout & JSXBase.HTMLAttributes<HTMLAppAboutElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "avatar-selector": LocalJSX.AvatarSelector & JSXBase.HTMLAttributes<HTMLAvatarSelectorElement>;
             "doremi-detector": LocalJSX.DoremiDetector & JSXBase.HTMLAttributes<HTMLDoremiDetectorElement>;
             "doremi-editor": LocalJSX.DoremiEditor & JSXBase.HTMLAttributes<HTMLDoremiEditorElement>;
         }
